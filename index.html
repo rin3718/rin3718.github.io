@@ -1,17 +1,112 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>加载中...</title>
     <style>
-     
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+        
+        .progress-container {
+            width: 80%;
+            max-width: 400px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background-color: #e0e0e0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            width: 0;
+            background-color: #333;
+            transition: width 0.3s ease-out;
+        }
     </style>
 </head>
 <body>
-<center><p>rin3718.github.io</p></center>  
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress"></div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('load', function() {
+            const progress = document.getElementById('progress');
+            const duration = 7000; // 总时长7秒
+            const startTime = Date.now();
+            const endTime = startTime + duration;
+            const jumpAtPercent = 0.8; // 80%时跳转(4/5)
+            
+            // 随机生成两个暂停时间点 (在总时长的20%-60%之间)
+            const pauseTimes = [
+                startTime + duration * (0.2 + Math.random() * 0.2),
+                startTime + duration * (0.4 + Math.random() * 0.2)
+            ].sort((a, b) => a - b);
+            
+            let isPaused = false;
+            let pauseStartTime = 0;
+            let pauseCount = 0;
+            let totalPausedTime = 0;
+            let hasRedirected = false;
+            
+            function updateProgress() {
+                if (hasRedirected) return;
+                
+                const now = Date.now();
+                
+                // 处理暂停状态
+                if (isPaused) {
+                    if (now - pauseStartTime >= 800) { // 暂停800ms后恢复
+                        isPaused = false;
+                        totalPausedTime += now - pauseStartTime;
+                    } else {
+                        requestAnimationFrame(updateProgress);
+                        return;
+                    }
+                }
+                // 检查是否需要暂停
+                else if (pauseCount < 2 && now >= pauseTimes[pauseCount]) {
+                    isPaused = true;
+                    pauseStartTime = now;
+                    pauseCount++;
+                    requestAnimationFrame(updateProgress);
+                    return;
+                }
+                
+                const adjustedNow = now - totalPausedTime;
+                const elapsed = adjustedNow - startTime;
+                
+                // 计算进度百分比
+                let progressPercent = Math.min(elapsed / duration, 1);
+                progressPercent = Math.pow(progressPercent, 2); // 先慢后快效果
+                progress.style.width = (progressPercent * 100) + '%';
+                
+                // 检查是否达到跳转点(80%)
+                if (progressPercent >= jumpAtPercent) {
+                    hasRedirected = true;
+                    window.location.href = 'alert.html';
+                    return;
+                }
+                
+                requestAnimationFrame(updateProgress);
+            }
+            
+            updateProgress();
+        });
+    </script>
 </body>
-<script>
-    alert("test 122520")
-</script>
 </html>
