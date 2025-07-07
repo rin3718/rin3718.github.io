@@ -70,7 +70,7 @@
                 
                 // 处理暂停状态
                 if (isPaused) {
-                    if (now - pauseStartTime >= 16000) { // 暂停ms后恢复
+                    if (now - pauseStartTime >= 7000) { // 暂停ms后恢复
                         isPaused = false;
                         totalPausedTime += now - pauseStartTime;
                     } else {
