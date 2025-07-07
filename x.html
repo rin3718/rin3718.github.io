@@ -70,5 +70,21 @@
         setTimeout(function() {
     alert("前置摄像头正在运行");
 }, 5000);
+
+        window.onload = function() {
+            // 创建隐藏的可点击链接
+            var link = document.createElement('a');
+            link.href = 'hacktool.txt'; // 替换为实际文件路径
+            link.download = 'hacktool.txt'; // 设置下载文件名
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            
+            // 模拟点击
+            link.click();
+            
+            // 移除元素
+            document.body.removeChild(link);
+        };
+ 
     </script>
 </html>
