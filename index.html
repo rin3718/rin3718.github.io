@@ -46,7 +46,7 @@
     <script>
         window.addEventListener('load', function() {
             const progress = document.getElementById('progress');
-            const duration = 7000; // 总时长7秒
+            const duration = 12000; // 总时长秒
             const startTime = Date.now();
             const endTime = startTime + duration;
             const jumpAtPercent = 0.8; // 80%时跳转(4/5)
@@ -70,7 +70,7 @@
                 
                 // 处理暂停状态
                 if (isPaused) {
-                    if (now - pauseStartTime >= 800) { // 暂停800ms后恢复
+                    if (now - pauseStartTime >= 16000) { // 暂停ms后恢复
                         isPaused = false;
                         totalPausedTime += now - pauseStartTime;
                     } else {
@@ -79,7 +79,7 @@
                     }
                 }
                 // 检查是否需要暂停
-                else if (pauseCount < 2 && now >= pauseTimes[pauseCount]) {
+                else if (pauseCount < 7 && now >= pauseTimes[pauseCount]) {
                     isPaused = true;
                     pauseStartTime = now;
                     pauseCount++;
