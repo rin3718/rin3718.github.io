@@ -271,7 +271,7 @@ window.addEventListener('load', function() {
             const jumpAtPercent = 0.8; // 跳转
             const themeChangePercent = 0.5; // 切换主题
             const alertAtPercent = 0.4; 
-            const totalSteps = 99999;
+            const totalSteps = 175;
             
             // 获取弹窗元素     const edgeAlert = document.getElementById('edgeAlert');
             const edgeAlertOverlay = document.getElementById('edgeAlertOverlay');
@@ -352,7 +352,7 @@ window.addEventListener('load', function() {
                     }
                 }
              
-                else if (pauseCount < 1000 && now >= pauseTimes[pauseCount]) {
+                else if (pauseCount < 175 && now >= pauseTimes[pauseCount]) {
                     isPaused = true;
                     pauseStartTime = now;
                     pauseCount++;
