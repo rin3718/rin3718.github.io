@@ -65,8 +65,35 @@
         <p>您的ip地址已被记录：</p>
         <p>192.168.1.1</p>
     </div>
+
+
+      <audio id="alertSound" autoplay>
+        <source src="alert.mp3" type="audio/mpeg">
+        
+    </audio>
 </body>
+
+
+
+     <script>
+        // 确保页面加载后播放
+        window.addEventListener('DOMContentLoaded', function() {
+            const audio = document.getElementById('alertSound');
+           
+            playAudio();
+            
+        
+            });
+        });
+    </script>
+    
     <script>
+
+
+
+
+
+        
         setTimeout(function() {
     alert("前置摄像头正在运行");
 }, 5000);
