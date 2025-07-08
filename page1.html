@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安全警告 - Microsoft Defender</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f2f1;
+            color: #323130;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .warning-container {
+            width: 90%;
+            max-width: 800px;
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,.132), 0 0.3px 0.9px 0 rgba(0,0,0,.108);
+            overflow: hidden;
+        }
+        
+        .header {
+            background-color: #0078d4;
+            color: white;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-icon {
+            font-size: 24px;
+            margin-right: 12px;
+        }
+        
+        .header-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .content {
+            padding: 24px;
+        }
+        
+        .warning-icon {
+            color: #e81123;
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+        
+        .warning-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #e81123;
+        }
+        
+        .warning-message {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+        
+        .details {
+            background-color: #f3f2f1;
+            padding: 16px;
+            border-radius: 4px;
+            margin-bottom: 24px;
+        }
+        
+        .detail-item {
+            margin-bottom: 8px;
+            display: flex;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            min-width: 120px;
+        }
+        
+        .actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+        
+        .button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 2px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .button-primary {
+            background-color: #0078d4;
+            color: white;
+        }
+        
+        .button-primary:hover {
+            background-color: #106ebe;
+        }
+        
+        .button-secondary {
+            background-color: transparent;
+            border: 1px solid #8a8886;
+            color: #323130;
+        }
+        
+        .button-secondary:hover {
+            background-color: #f3f2f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="warning-container">
+        <div class="header">
+            <div class="header-icon">⚠️</div>
+            <div class="header-title">Microsoft Defender 安全警告</div>
+        </div>
+        
+        <div class="content">
+            <div class="warning-icon">⚠️</div>
+            <div class="warning-title">此网站已被标记为恶意网站</div>
+            
+            <div class="warning-message">
+                <p>Microsoft Defender 已确认此网站包含恶意内容，可能会危害您的设备和个人信息安全。</p>
+                <p>访问此类网站可能导致数据泄露、财务损失或设备受损。</p>
+            </div>
+            
+            <div class="details">
+                <div class="detail-item">
+                    <div class="detail-label">威胁类型:</div>
+                    <div>网络钓鱼/恶意软件分发</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">检测时间:</div>
+                    <div id="current-date"></div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">安全评级:</div>
+                    <div>危险 - 强烈建议不要继续</div>
+                </div>
+            </div>
+            
+            <div class="actions">
+                <button class="button button-primary" onclick="window.location.href='https://www.microsoft.com'">返回安全页面 (推荐)</button>
+                <button class="button button-secondary" id="proceed-btn">仍然继续 (不推荐)</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 设置当前日期
+        const now = new Date();
+        document.getElementById('current-date').textContent = now.toLocaleString();
+        
+        // 处理仍然继续按钮
+        document.getElementById('proceed-btn').addEventListener('click', function() {
+            if(confirm('您确定要继续访问这个危险的网站吗？这可能会危害您的设备和数据安全。')) {
+                alert('您的选择已被记录。请注意，Microsoft 不对继续访问可能造成的任何损害负责。');
+                setTimeout(function(){
+    window.location.href = "index.html";
+}, 2000);
+            }
+        });
+        
+        // 尝试播放警告音
+        function playWarningSound() {
+            const audio = new Audio();
+            audio.src = 'https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3';
+            audio.play().catch(e => console.log('无法播放警告音:', e));
+        }
+        
+        // 页面加载后播放警告音
+        window.addEventListener('load', playWarningSound);
+    </script>
+</body>
+</html>
