@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>操作提示</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            overflow: hidden;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+        }
+        
+        .notification {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .notification::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            z-index: -1;
+        }
+        
+        .title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+        
+        .message {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin: 40px 0;
+            color: #fff;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+            min-height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .message span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s forwards;
+        }
+        
+        .message span:nth-child(1) { animation-delay: 0.1s; }
+        .message span:nth-child(2) { animation-delay: 0.2s; }
+        .message span:nth-child(3) { animation-delay: 0.3s; }
+        .message span:nth-child(4) { animation-delay: 0.4s; }
+        .message span:nth-child(5) { animation-delay: 0.5s; }
+        .message span:nth-child(6) { animation-delay: 0.6s; }
+        .message span:nth-child(7) { animation-delay: 0.7s; }
+        .message span:nth-child(8) { animation-delay: 0.8s; }
+        .message span:nth-child(9) { animation-delay: 0.9s; }
+        .message span:nth-child(10) { animation-delay: 1.0s; }
+        .message span:nth-child(11) { animation-delay: 1.1s; }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .icons {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin: 40px 0;
+        }
+        
+        .icon-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .icon {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: gold;
+        }
+        
+        .icon-label {
+            font-size: 1.4rem;
+            font-weight: 600;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .counter {
+            font-size: 5rem;
+            font-weight: 800;
+            color: #ffde59;
+            text-shadow: 0 0 20px rgba(255, 222, 89, 0.7);
+            margin: 20px 0;
+            letter-spacing: 5px;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .footer {
+            margin-top: 40px;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-style: italic;
+        }
+        
+        .decoration {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        .dec-1 {
+            top: -30px;
+            left: -30px;
+        }
+        
+        .dec-2 {
+            bottom: -40px;
+            right: -40px;
+            width: 200px;
+            height: 200px;
+        }
+        
+        .dec-3 {
+            top: 50%;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            border-width: 2px;
+        }
+        
+        .highlight {
+            color: #ffde59;
+            font-weight: 700;
+        }
+        
+        .glow {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ffde59, 0 0 40px #ffde59; }
+            to { text-shadow: 0 0 15px #fff, 0 0 25px #fff, 0 0 35px #ffde59, 0 0 45px #ffde59; }
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .notification {
+                padding: 30px 20px;
+            }
+            
+            .title {
+                font-size: 2rem;
+            }
+            
+            .message {
+                font-size: 2.2rem;
+            }
+            
+            .counter {
+                font-size: 3.5rem;
+            }
+            
+            .icons {
+                gap: 30px;
+            }
+            
+            .icon {
+                width: 70px;
+                height: 70px;
+                font-size: 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .message {
+                font-size: 1.8rem;
+                flex-wrap: wrap;
+            }
+            
+            .icons {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="decoration dec-1"></div>
+        <div class="decoration dec-2"></div>
+        <div class="decoration dec-3"></div>
+        
+        <div class="notification">
+            <h1 class="title">重要操作提示</h1>
+            
+            <div class="message">
+                <span>先</span>
+                <span class="highlight">开</span>
+                <span class="highlight">门</span>
+                <span>再</span>
+                <span>进</span>
+                <span>行</span>
+                <span class="highlight">3</span>
+                <span class="highlight">7</span>
+                <span class="highlight">9</span>
+                <span>次</span>
+                <span>传</span>
+                <span>送</span>
+            </div>
+            
+            <div class="counter pulse">379</div>
+            
+            <div class="icons">
+                <div class="icon-box">
+                    <div class="icon">
+                        <i class="fas fa-door-open"></i>
+                    </div>
+                    <div class="icon-label">开门操作</div>
+                </div>
+                
+                <div class="icon-box">
+                    <div class="icon">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    <div class="icon-label">然后</div>
+                </div>
+                
+                <div class="icon-box">
+                    <div class="icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <div class="icon-label">传送操作</div>
+                </div>
+            </div>
+            
+            <div class="footer">
+                请严格按照顺序执行操作，任何步骤错误都可能导致不可预知的后果
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 文字动画完成后添加闪烁效果
+        setTimeout(() => {
+            const highlights = document.querySelectorAll('.highlight');
+            highlights.forEach(el => {
+                el.classList.add('glow');
+            });
+            
+            // 添加背景星星效果
+            createStars();
+        }, 2000);
+        
+        // 创建背景星星
+        function createStars() {
+            const container = document.querySelector('.container');
+            const starCount = 30;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // 随机位置和大小
+                const size = Math.random() * 3 + 1;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 3 + 2;
+                
+                star.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    background: rgba(255, 255, 255, ${Math.random() * 0.8 + 0.2});
+                    border-radius: 50%;
+                    top: ${posY}%;
+                    left: ${posX}%;
+                    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+                    animation: twinkle ${duration}s infinite ${delay}s;
+                `;
+                
+                container.appendChild(star);
+            }
+            
+            // 添加星星动画
+            const style = document.createElement('style');
+            style.innerHTML = `
+                @keyframes twinkle {
+                    0% { opacity: 0.2; transform: scale(1); }
+                    50% { opacity: 1; transform: scale(1.5); }
+                    100% { opacity: 0.2; transform: scale(1); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    </script>
+</body>
+</html>
