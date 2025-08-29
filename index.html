@@ -1,11 +1,88 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>a</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QQ群文件下载</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        h1 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        .qq-group {
+            margin: 25px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background: #f9f9f9;
+        }
+        .qq-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0066cc;
+        }
+        .download-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 15px 0;
+            border: none;
+            cursor: pointer;
+        }
+        .hint {
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-<p>这是一个段落</p>
+    <div class="container">
+        <h1>厕纸rin3718</h1>
+        
+        <p>自己选择加不加q群,这是给pc用的 功能带人跑图等几个常用功能</p>
+        
+        <div class="qq-group">
+            <p>QQ群号</p>
+            <div class="qq-number"> 死掉得ios群 应该满了不要加 651124479</div>
+          <div class="qq-number"> 新群1061245987</div>
+        </div>
+        
+        <button class="download-btn" onclick="downloadFile()">下载文件</button>
+        
+        <p class="hint">点击上方按钮下载V1.0</p>
+    </div>
+
+    <script>
+        function downloadFile() {
+            // 创建一个虚拟的a标签用于下载
+            const link = document.createElement('a');
+            link.href = 'sky.zip';
+            link.download = 'sky.zip'; 
+            
+          
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
 </body>
 </html>
