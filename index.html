@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>下载 | Dopamine</title>
     <style>
-        /* 彻底极简重置 - 无渐变，无花哨效果 */
+
         * {
             margin: 0;
             padding: 0;
@@ -13,82 +13,76 @@
         }
 
         body {
-            /* 深灰色不透明背景 - 纯色，无渐变 */
-            background-color: #2a2a2a;  /* 深灰纯色，不透明 */
+ 
+            background-color: #2a2a2a;  
             font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
             min-height: 100vh;
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            /* 确保没有任何渐变或背景图片 */
+
             background-image: none;
             background-blend-mode: normal;
         }
 
-        /* 极简卡片/容器 - 无阴影无圆角无边框, 但稍微让内容区舒服，完全符合极简要求 */
+
         .download-container {
             text-align: center;
-            /* 没有任何渐变、阴影、边框圆角可加，但为了视觉舒适，保留基本间距 */
+   
             padding: 2rem 3rem;
-            background-color: transparent; /* 完全透明继承父级背景，保持深灰统一 */
+            background-color: transparent; 
             max-width: 90%;
             width: 500px;
         }
 
-        /* 主标题/名称提示 - 暗蓝色字体，清晰简单 */
+
         .file-name {
             font-size: 2.4rem;
             font-weight: 500;
             letter-spacing: 0.5px;
-            color: #3a6ea5;   /* 暗蓝色，沉稳干净 */
+            color: #3a6ea5; 
             margin-bottom: 2.2rem;
-            /* 极简无阴影无纹理 */
+   
             background: transparent;
             text-decoration: none;
             font-family: inherit;
         }
 
-        /* 按钮模块: 纯色无渐变，无圆角可选保持直角？为了极简可用平角或现代极简风格稍有柔和度但不破坏极简 */
-        /* 极简精神下保持微小白金风格: 完全平面，无边框圆角可选solid直角，但是稍微优雅一点设极微小圆角? 根据“不要花里胡哨”原则, 但圆角不属于渐变或颜色花哨,
-           但为了彻底极客感，使用直角(0px)硬边。但很多极简设计也接受小圆角，此处遵循最苛刻: 无圆角 */
+     
         .download-btn {
             display: inline-block;
-            background-color: #3a6ea5;  /* 暗蓝色与提示呼应，干净纯色 */
+            background-color: #3a6ea5; 
             color: #ffffff;
             font-size: 1.25rem;
             font-weight: 500;
             text-decoration: none;
             padding: 0.9rem 2.2rem;
             border: none;
-            /* 无圆角 border-radius: 0; 硬边极简，无任何渐变或阴影 */
+       
             border-radius: 0px;
             cursor: pointer;
-            transition: none;  /* 去除任何过度动画以免花哨，彻底静态 */
+            transition: none; 
             font-family: inherit;
             text-align: center;
             background-image: none;
             background-blend-mode: normal;
             box-shadow: none;
-            /* 避免任何悬停变换效果 尽可能保持静态 */
+   
         }
 
-        /* 为了可访问性和视觉反馈，添加一个简单且不花哨的悬停状态：仅稍微变暗（取消一切幅面动画、变换） */
-        /* 但依然没有渐变，只是纯色加深，属于功能指示，不算“花里胡哨” */
+       
         .download-btn:hover {
-            background-color: #2c5585;  /* 深一点的暗蓝纯色，无渐变 */
+            background-color: #2c5585; 
         }
 
         .download-btn:active {
-            background-color: #1f4068;  /* 点击更深色，无特效 */
+            background-color: #1f4068; 
         }
 
-        /* 可选额外辅助说明: 文件大小或版本？但为了极简，只呈现必要元素，不加多余文字。但完全符合题目要求:
-           作用是下载文件，加个按钮，下载Dopamine.7z，提示写暗蓝色的Dopamine 就这一个就行 
-           因此只展示一个暗蓝色"Dopamine"文本 + 下载按钮(关联文件)
-        */
+       
 
-        /* 极简适配移动电脑: 电脑访问让content不拥挤 */
+
         @media (max-width: 600px) {
             .download-container {
                 padding: 1.5rem 1rem;
@@ -102,7 +96,6 @@
             }
         }
 
-        /* 确保没有任何粒子、背景噪点、渐变、伪元素做的装饰 */
         body::before,
         body::after,
         .download-container::before,
@@ -114,20 +107,11 @@
 </head>
 <body>
     <div class="download-container">
-        <!-- 暗蓝色的 Dopamine 提示文字：只写 'Dopamine' 符合要求，暗蓝色 -->
+     
         <div class="file-name">Dopamine</div>
-        <!-- 下载按钮：点击下载 Dopamine.7z 文件 -->
+
         <a href="Dopamine.7z" class="download-btn" download="Dopamine.7z">下载文件</a>
-        <!-- 
-            备注：下载链接指向当前目录下的 Dopamine.7z 文件，
-            若需要真实下载，请确保同目录下存在 Dopamine.7z 或者根据实际情况修改 href 路径。
-            因为题目只要求生成HTML表现和功能，完全符合电脑访问，深灰色背景，极简，无渐变，
-            包含暗蓝色"Dopamine"文字 + 触发下载的按钮。
-            
-            同时为了避免任何多余脚本，使用原生HTML5 download属性，简单可靠。
-            若文件不存在，浏览器仍会尝试下载(但资源404)。如需指向有效文件可调整URL，
-            这里完全遵循设计展示实现逻辑: 提供下载触发作用。
-        -->
+    
     </div>
 </body>
 </html>
